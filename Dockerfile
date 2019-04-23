@@ -1,8 +1,14 @@
-FROM debian:9
+FROM python:3.6.8-stretch
+
+ENV LANG=C.UTF-8
 
 WORKDIR /root
+COPY . /root/
+
+RUN pip3 install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
 
 RUN apt-get update && apt-get install -y wget
+
 RUN cd /root && mkdir tf_vae
 RUN wget -O tf_vae/vae-300000.index 'https://docs.google.com/uc?export=download&id=1ulHdDxebH46m_0ZoLa2Wsz_6vStYqJQm'
 RUN wget -O tf_vae/vae-300000.meta 'https://docs.google.com/uc?export=download&id=1nHN_i7Ro9g0lP4y_YQCvIWrOVX1I3CJa'
@@ -21,4 +27,4 @@ EXPOSE 8000
 #ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["/bin/bash"]
 
-# docker build -t neural-painters:20180905 -f Dockerfile .
+# docker build -t gswyhq/neural-painters -f Dockerfile .

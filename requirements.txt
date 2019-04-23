@@ -1,0 +1,7 @@
+lucid==0.3.8
+moviepy==1.0.0
+numpy==1.16.2
+tensorflow==1.13.1
+ipython==7.4.0
+pexpect==4.2.1
+requests==2.18.4
